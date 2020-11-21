@@ -11,7 +11,7 @@ object NetworkProvider {
     private const val BASE_URL="https://randomuser.me/"
 
 
-    private fun providesHttpAdapter(): Retrofit{
+    fun providesHttpAdapter(): Retrofit{
         return Retrofit.Builder().apply {
             client(providesHttpClients())
             baseUrl(BASE_URL)
