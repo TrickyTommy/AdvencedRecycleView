@@ -9,32 +9,36 @@ import com.example.adnvancedrecycleview.databinding.ItemHomeBinding
 import com.example.adnvancedrecycleview.model.ResultsItem
 
 
-class HomeAdapter(private val result: List<ResultsItem>): RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
+class HomeAdapter(private val result: List<ResultsItem>) :
+    RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
 
     }
 
-    inner class HomeViewHolder(        private val binding: ItemHomeBinding
-    ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(result: ResultsItem){
+    inner class HomeViewHolder(
+        private val binding: ItemHomeBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(result: ResultsItem) {
             binding.run {
-                tvName.text=result.name.first
-                tvCity.text= result.location.city
-                tvPhone.text=result.phone
+                tvName.text = result.name.first
+                tvCity.text = result.location.city
+                tvPhone.text = result.phone
                 Glide.with(binding.root).load(result.picture).circleCrop().into(ivImage)
             }
 
-            }
         }
-
-
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(result[holder.adapterPosition])
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return result.count()
     }
+
+
 }
+
+
+
