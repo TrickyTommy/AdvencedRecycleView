@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.adnvancedrecycleview.databinding.ItemHomeBinding
 import com.example.adnvancedrecycleview.model.ResultsItem
 
@@ -17,7 +18,10 @@ class HomeAdapter(private val result: List<ResultsItem>): RecyclerView.Adapter<H
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(result: ResultsItem){
             binding.run {
-                tvName.text=result.name
+                tvName.text=result.name.first
+                tvCity.text= result.location.city
+                tvPhone.text=result.phone
+                Glide.with(binding.root).load(result.picture).circleCrop().into(ivImage)
             }
 
             }
