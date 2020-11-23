@@ -15,10 +15,13 @@ import com.example.adnvancedrecycleview.adapter.HomeAdapter
 import com.example.adnvancedrecycleview.clients.NetworkProvider
 import com.example.adnvancedrecycleview.model.ResponseData
 import com.example.adnvancedrecycleview.services.HomeDataSource
+import kotlinx.android.synthetic.main.activity_home.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.create
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 
 class HomeActivity : AppCompatActivity() {
@@ -30,7 +33,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         val progressBar= findViewById<ProgressBar>(R.id.pb_home)
         val datasource = NetworkProvider.providesHttpAdapter().create(HomeDataSource::class.java)
         datasource.discoverUser().enqueue(object : Callback<ResponseData>{
