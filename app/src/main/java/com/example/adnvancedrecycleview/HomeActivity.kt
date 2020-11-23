@@ -2,6 +2,7 @@ package com.example.adnvancedrecycleview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import com.example.adnvancedrecycleview.databinding.*
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.example.adnvancedrecycleview.adapter.HomeAdapter
 import com.example.adnvancedrecycleview.clients.NetworkProvider
 import com.example.adnvancedrecycleview.model.ResponseData
 import com.example.adnvancedrecycleview.services.HomeDataSource
@@ -36,11 +38,12 @@ class HomeActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                 val results = response.body()?.results
                 val itemAdapter = findViewById<RecyclerView>(R.id.rv_home)
-                itemAdapter.addItemDecoration(DividerItemDecoration(this @HomeActivity,DividerItemDecoration.VERTICAL))
-                itemAdapter.adapter  = HomeAd
+                itemAdapter.addItemDecoration(DividerItemDecoration(this@HomeActivity,DividerItemDecoration.VERTICAL))
+                itemAdapter.adapter  = HomeAdapter( result = results ?: emptyList())
             }
 
             override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                Log.e(HomeActivity::class.java.simpleName, "${t.printStackTrace()}")
 
             }
         })

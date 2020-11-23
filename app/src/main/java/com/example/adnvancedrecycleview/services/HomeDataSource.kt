@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface HomeDataSource{
     @GET("api")
     fun discoverUser(
-        @Query("results") results: Int = 50
+        @Query("results") results: Int = 100
 //        apiKey: String = BuildConfig.API_KEY
 //        @Query("inc") inc: String=""
     ):Call<ResponseData>

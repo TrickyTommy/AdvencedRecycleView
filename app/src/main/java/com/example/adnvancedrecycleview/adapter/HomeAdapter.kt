@@ -1,5 +1,6 @@
 package com.example.adnvancedrecycleview.adapter
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.menu.ActionMenuItemView
@@ -10,9 +11,18 @@ import com.example.adnvancedrecycleview.model.ResultsItem
 
 
 class HomeAdapter(private val result: List<ResultsItem>) :
-    RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+    RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+        val viewHolder = HomeViewHolder(
+            ItemHomeBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+        return viewHolder
     }
 
     inner class HomeViewHolder(
@@ -23,7 +33,7 @@ class HomeAdapter(private val result: List<ResultsItem>) :
                 tvName.text = result.name.first
                 tvCity.text = result.location.city
                 tvPhone.text = result.phone
-                Glide.with(binding.root).load(result.picture).circleCrop().into(ivImage)
+                Glide.with(binding.root).load(result.picture.medium).circleCrop().into(ivImage)
             }
 
         }
